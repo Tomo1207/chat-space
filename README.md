@@ -1,3 +1,23 @@
+
+## groupテーブル
+
+|Column|Type|Options|
+|------|----|-------|
+
+### Association
+- has_many :members
+- belongs_to :user
+
+
+## userテーブル
+
+|Column|Type|Options|
+|------|----|-------|
+
+### Association
+- has_many :group
+- has_many :members
+
 ## membersテーブル
 
 |Column|Type|Options|
@@ -8,19 +28,3 @@
 ### Association
 - belongs_to :group
 - belongs_to :user
-
-
-## groupテーブル
-
-
-### Association
-- has_many :members
-- belongs_to :user
-
-
-## userテーブル
-
-
-### Association
-- has_many :group
-- has_many :members
