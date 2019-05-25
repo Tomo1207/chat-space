@@ -1,41 +1,43 @@
-## messageテーブル
+## messagesテーブル
 
 |Column|Type|Options|
 |------|----|-------|
 |comment|text|-------|
 |img|string|-------|
-|user_id|integer|
-|group_id|integer|
+|user|references|null: false, foreign_key: true|
+|group|references|null: false, foreign_key: true|
 
 ### Association
-- belomgs_to :group_members
-- belongs_to :group
+- belomgs_to :users
+- has_many :groups
 
-## groupテーブル
+## groupsテーブル
 
 |Column|Type|Options|
 |------|----|-------|
-|group_id|
+|name|text|null: false|
+
+
 
 ### Association
-- has_many :member
-- has_many :message
-- belongs_to :user
+- has_many :members
+- has_many :messages
+- has_many :users
 
-## userテーブル
+## usersテーブル
 
 |Column|Type|Options|
 |------|----|-------|
-|user_id|
-|password|
-|mail_address|
+|name|text|null: false|
+|password|integer|null: false|
+|mail_address|text|null: false|
 
 ### Association
-- has_many :group
-- has_many :message
-- belongs_to :member
+- has_many :groups
+- has_many :messages
+- has_many :members
 
-## group_membersテーブル
+## membersテーブル
 
 |Column|Type|Options|
 |------|----|-------|
@@ -43,5 +45,5 @@
 |group_id|integer|null: false, foreign_key: true|
 
 ### Association
-- belongs_to :group
-- has_many :message
+- belongs_to :groups
+- belongs_to :users
