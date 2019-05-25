@@ -8,8 +8,8 @@
 |group|references|null: false, foreign_key: true|
 
 ### Association
-- belomgs_to :user
-- has_many :groups
+- belongs_to :user
+- belongs_to :group
 
 ## groupsテーブル
 
@@ -21,19 +21,19 @@
 
 ### Association
 - has_many :members
-- has_many :messages
+- has_many :users, through: :members
 - has_many :users
 
 ## usersテーブル
 
 |Column|Type|Options|
 |------|----|-------|
-|name|text|null: false|
-|password|integer|null: false|
-|mail_address|text|null: false|
+|name|text|null: false,add_index: true|
+|password|integer|null: false,unique: true|
+|mail_address|text|null: false,unique: true|
 
 ### Association
-- has_many :groups
+- has_many :groups, through: :members
 - has_many :messages
 - has_many :members
 
